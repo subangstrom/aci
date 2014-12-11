@@ -67,15 +67,10 @@ figure;
 plot(projx_E);
 
 %% note the output from matlab says 'find image aligned a long xxx degree at index yyy', use the index yyy to plot the projected profile
-
-figure;
 subplot(2,1,1); plot(proj_acc_E(40,:));
 subplot(2,1,2); plot(proj_acc_E(143,:));
 
 %% the matrix representation is stored in 'mini_E'
-% mini_E is a 2D matrix with each node containing the index of the peak
-% fitting result in fitresult_R
-
 figure;
 imagesc(mini_E>0);
 daspect([1 sqrt(2) 1]);

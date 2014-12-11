@@ -120,7 +120,7 @@ for i=1:1:1
             image2(fx(pixels),fy(pixels))=zfit{indexj-1}(pixels);
         end
         oimage{indexj}=fz;
-        fprintf('find peak number %d in frame %d\n',j,i);
+        %fprintf('find peak number %d in frame %d\n',j,i);
     end
 %     figure;
 %     imagesc(image1);
