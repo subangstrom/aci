@@ -1,8 +1,5 @@
-aci
+Atom Column Indexing (ACI)
 ===
-
-Atom Column Indexing
----------------------------
 
 This folder contains matlab files that load an example RevSTEM image and then fit atom columns in STEM image using 2D Gaussian distribution and then index the atom columns to a matrix representation.
 
