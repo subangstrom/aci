@@ -80,3 +80,67 @@ figure;
 imagesc(mini_E>0);
 daspect([1 sqrt(2) 1]);
 colormap(gray);
+
+%% calculate the intensity map easily from the matrix representation
+col_int_E=get_col_int( ImageSum_R,fitresult_E,0,0);
+% the circle around each atom coloumn shows the intensity
+figure;
+imagesc(ImageSum_R);
+axis image
+axis off
+colormap(gray);
+hold on;
+
+[sx,sy]=size(mini_E);
+hold all;
+jets=jet(256);
+upper=max(col_int_E);
+lower=min(col_int_E);
+for i=1:1:sx
+    for j=1:1:sy
+        if mini_E(i,j) == 0
+            continue;
+        end
+        p1=mini_E(i,j);
+        if col_int_E(p1)==0
+            continue;
+        end
+        color_temp=round((col_int_E(p1)-lower)/(upper-lower)*256);
+        if(color_temp<1) color_temp=1; end
+        if(color_temp>256) color_temp=256; end
+        plot(fitresult_E{p1}(5), fitresult_E{p1}(6),'or','color',jets(color_temp,:),'markersize',9,'linewidth',2);
+    end
+end
+title('intensity map','fontsize',20);
+
+%% calculate the ratio map from the matrix representation
+[ratio_E,ratio_E_matrix,col_int_matrix]=get_ratio(fitresult_E,mini_E,col_int_E,1,1);
+
+figure;
+imagesc(ImageSum_R);
+axis image
+axis off
+colormap(gray);
+hold on;
+
+[sx,sy]=size(mini_E);
+hold all;
+jets=jet(256);
+upper=max(ratio_E);
+lower=min(ratio_E(ratio_E>0));
+for i=1:1:sx
+    for j=1:1:sy
+        if mini_E(i,j) == 0
+            continue;
+        end
+        p1=mini_E(i,j);
+        if ratio_E(p1)==0
+            continue;
+        end
+        color_temp=round((ratio_E(p1)-lower)/(upper-lower)*256);
+        if(color_temp<1) color_temp=1; end
+        if(color_temp>256) color_temp=256; end
+        plot(fitresult_E{p1}(5), fitresult_E{p1}(6),'or','color',jets(color_temp,:),'markersize',9,'linewidth',2);
+    end
+end
+title('ratio map','fontsize',20);
