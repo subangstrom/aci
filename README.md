@@ -68,4 +68,64 @@ subplot(2,1,2); plot(proj_acc_E(143,:));
 imagesc(mini_E&gt;0);
 daspect([1 sqrt(2) 1]);
 colormap(gray);
-</pre><img vspace="5" hspace="5" src="https://raw.githubusercontent.com/subangstrom/aci/master/html/ACI_flow_08.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div>
+</pre><img vspace="5" hspace="5" src="https://raw.githubusercontent.com/subangstrom/aci/master/html/ACI_flow_08.png" alt="">  <h2>calculate the intensity map easily from the matrix representation<a name="10"></a></h2><pre class="codeinput">col_int_E=get_col_int( ImageSum_R,fitresult_E,0,0);
+<span class="comment">% the circle around each atom coloumn shows the intensity</span>
+figure;
+imagesc(ImageSum_R);
+axis <span class="string">image</span>
+axis <span class="string">off</span>
+colormap(gray);
+hold <span class="string">on</span>;
+
+[sx,sy]=size(mini_E);
+hold <span class="string">all</span>;
+jets=jet(256);
+upper=max(col_int_E);
+lower=min(col_int_E);
+<span class="keyword">for</span> i=1:1:sx
+    <span class="keyword">for</span> j=1:1:sy
+        <span class="keyword">if</span> mini_E(i,j) == 0
+            <span class="keyword">continue</span>;
+        <span class="keyword">end</span>
+        p1=mini_E(i,j);
+        <span class="keyword">if</span> col_int_E(p1)==0
+            <span class="keyword">continue</span>;
+        <span class="keyword">end</span>
+        color_temp=round((col_int_E(p1)-lower)/(upper-lower)*256);
+        <span class="keyword">if</span>(color_temp&lt;1) color_temp=1; <span class="keyword">end</span>
+        <span class="keyword">if</span>(color_temp&gt;256) color_temp=256; <span class="keyword">end</span>
+        plot(fitresult_E{p1}(5), fitresult_E{p1}(6),<span class="string">'or'</span>,<span class="string">'color'</span>,jets(color_temp,:),<span class="string">'markersize'</span>,9,<span class="string">'linewidth'</span>,2);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+title(<span class="string">'intensity map'</span>,<span class="string">'fontsize'</span>,20);
+</pre><img vspace="5" hspace="5" src="ACI_flow_09.png" alt=""> <h2>calculate the ratio map from the matrix representation<a name="11"></a></h2><pre class="codeinput">[ratio_E,ratio_E_matrix,col_int_matrix]=get_ratio(fitresult_E,mini_E,col_int_E,1,1);
+
+figure;
+imagesc(ImageSum_R);
+axis <span class="string">image</span>
+axis <span class="string">off</span>
+colormap(gray);
+hold <span class="string">on</span>;
+
+[sx,sy]=size(mini_E);
+hold <span class="string">all</span>;
+jets=jet(256);
+upper=max(ratio_E);
+lower=min(ratio_E(ratio_E&gt;0));
+<span class="keyword">for</span> i=1:1:sx
+    <span class="keyword">for</span> j=1:1:sy
+        <span class="keyword">if</span> mini_E(i,j) == 0
+            <span class="keyword">continue</span>;
+        <span class="keyword">end</span>
+        p1=mini_E(i,j);
+        <span class="keyword">if</span> ratio_E(p1)==0
+            <span class="keyword">continue</span>;
+        <span class="keyword">end</span>
+        color_temp=round((ratio_E(p1)-lower)/(upper-lower)*256);
+        <span class="keyword">if</span>(color_temp&lt;1) color_temp=1; <span class="keyword">end</span>
+        <span class="keyword">if</span>(color_temp&gt;256) color_temp=256; <span class="keyword">end</span>
+        plot(fitresult_E{p1}(5), fitresult_E{p1}(6),<span class="string">'or'</span>,<span class="string">'color'</span>,jets(color_temp,:),<span class="string">'markersize'</span>,9,<span class="string">'linewidth'</span>,2);
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+title(<span class="string">'ratio map'</span>,<span class="string">'fontsize'</span>,20);
+</pre><img vspace="5" hspace="5" src="ACI_flow_10.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div>
