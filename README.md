@@ -98,7 +98,7 @@ lower=min(col_int_E);
     <span class="keyword">end</span>
 <span class="keyword">end</span>
 title(<span class="string">'intensity map'</span>,<span class="string">'fontsize'</span>,20);
-</pre><img vspace="5" hspace="5" src="ACI_flow_09.png" alt=""> <h2>calculate the ratio map from the matrix representation<a name="11"></a></h2><pre class="codeinput">[ratio_E,ratio_E_matrix,col_int_matrix]=get_ratio(fitresult_E,mini_E,col_int_E,1,1);
+</pre><img vspace="5" hspace="5" src="https://raw.githubusercontent.com/subangstrom/aci/master/html/ACI_flow_09.png" alt=""> <h2>calculate the ratio map from the matrix representation<a name="11"></a></h2><pre class="codeinput">[ratio_E,ratio_E_matrix,col_int_matrix]=get_ratio(fitresult_E,mini_E,col_int_E,1,1);
 
 figure;
 imagesc(ImageSum_R);
@@ -128,4 +128,4 @@ lower=min(ratio_E(ratio_E&gt;0));
     <span class="keyword">end</span>
 <span class="keyword">end</span>
 title(<span class="string">'ratio map'</span>,<span class="string">'fontsize'</span>,20);
-</pre><img vspace="5" hspace="5" src="ACI_flow_10.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div>
+</pre><img vspace="5" hspace="5" src="https://raw.githubusercontent.com/subangstrom/aci/master/html/ACI_flow_10.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div>
